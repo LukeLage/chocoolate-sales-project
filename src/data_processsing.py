@@ -31,3 +31,12 @@ sales_customers_data = pd.merge(
     on='customer_id',
     how='inner'
 )
+
+checking_data = [stores_sales_data, sales_calendar_data, products_sales_data, sales_customers_data]
+data_series = pd.Series(checking_data)
+
+print('Checking for null values in the merged datasets:')
+print(data_series.isnull().sum())
+
+print('Checking for duplicates in the merged datasets:')
+print(data_series.duplicated().sum())
