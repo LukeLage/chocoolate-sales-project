@@ -6,12 +6,16 @@ from data_processsing import (
     sales_calendar_data,
     products_sales_data,
     customers_data,
+    sales_data
 )
 
 sales_by_store = stores_sales_data.groupby('store_id')
 quantity_by_store = sales_by_store['quantity'].sum()
 revenue_by_store = sales_by_store['revenue'].sum()
 profit_by_store = sales_by_store['profit'].sum()
+
+total_revenue = sales_data['revenue'].sum()
+total_profit = sales_data['profit'].sum()
 
 best_day_of_week = sales_calendar_data.groupby('day_of_week')['revenue'].sum().idxmax()
 best_month = sales_calendar_data.groupby('month')['revenue'].sum().idxmax()
