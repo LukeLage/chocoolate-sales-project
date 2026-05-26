@@ -6,7 +6,7 @@ from data_processsing import (
     sales_calendar_data,
     products_sales_data,
     sales_customers_data,
-    customers_data
+    customers_data,
 )
 
 sales_by_store = stores_sales_data.groupby('store_id')
@@ -29,9 +29,14 @@ best_season = max(season_counts, key=season_counts.get)
 
 best_store = revenue_by_store.idxmax()
 best_product = products_sales_data.groupby('product_id')['revenue'].sum().idxmax()
+median_weight = products_sales_data['weight_g'].median()
+price_by_weight = products_sales_data.groupby('weight_g')['price'].mean()
 
 loyalty = customers_data.groupby('loyalty_member').size().rename('Customer Count')
 loyalty_percentage = loyalty / loyalty.sum() * 100
 
 loyalty_new = loyalty.to_frame()
 loyalty_new['Bool'] = loyalty_new.index.astype(bool)
+
+median_age = customers_data['age'].median()
+modage = customers_data['age'].mode()[0]
