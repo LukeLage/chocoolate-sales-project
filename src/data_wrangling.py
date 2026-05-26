@@ -33,7 +33,6 @@ best_season = max(season_counts, key=season_counts.get)
 best_store = revenue_by_store.idxmax()
 best_product = products_sales_data.groupby('product_id')['revenue'].sum().idxmax()
 median_weight = products_sales_data['weight_g'].median()
-price_by_weight = products_sales_data.groupby('weight_g')['price'].mean()
 
 loyalty = customers_data.groupby('loyalty_member').size().rename('Customer Count')
 loyalty_percentage = loyalty / loyalty.sum() * 100
