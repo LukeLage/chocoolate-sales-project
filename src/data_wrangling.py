@@ -5,7 +5,6 @@ from data_processsing import (
     stores_sales_data,
     sales_calendar_data,
     products_sales_data,
-    sales_customers_data,
     customers_data,
 )
 
@@ -40,3 +39,5 @@ loyalty_new['Bool'] = loyalty_new.index.astype(bool)
 
 median_age = customers_data['age'].median()
 modage = customers_data['age'].mode()[0]
+customers_age_distribution = customers_data['age'].value_counts().sort_index()
+customers_gender = customers_data.groupby('gender')['customer_id'].nunique()
