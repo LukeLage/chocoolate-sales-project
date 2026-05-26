@@ -10,6 +10,15 @@ from data_processsing import (
 )
 
 sales_by_store = stores_sales_data.groupby('store_id')
+
+stores_sales_data['total_sales'] = stores_sales_data['quantity'] * stores_sales_data['revenue']
+
+sale_stores_for_graph = (
+    stores_sales_data
+        .groupby('store_id')['total_sales']
+        .sum()
+        .reset_index()
+)
 quantity_by_store = sales_by_store['quantity'].sum()
 revenue_by_store = sales_by_store['revenue'].sum()
 profit_by_store = sales_by_store['profit'].sum()

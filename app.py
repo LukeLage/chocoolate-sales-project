@@ -30,6 +30,10 @@ from data_wrangling import (
 	customers_gender,
 )
 
+from data_graph import (
+    sales_graph
+)
+
 st.title("Chocolate Sales Dashboard")
 
 st.sidebar.title('Filters')
@@ -39,3 +43,5 @@ metrics1, metrics2, metrics3 = st.columns(3)
 metrics1.container(border= True).metric('Total Revenue in Millions', '${:,.2f}'.format(total_revenue / 1000000))
 metrics2.container(border= True).metric('Total Profit in Millions', '${:,.2f}'.format(total_profit / 1000000))
 metrics3.container(border= True).metric('Best Store by Revenue', best_store)
+
+st.plotly_chart(sales_graph, use_container_width=True)
